@@ -15,7 +15,7 @@
 .chatHeader_left > h3 {
     display: flex;
     align-items: center;
-    /* color: white; */
+    color: white;
 }
 
 .chatHeader_right {

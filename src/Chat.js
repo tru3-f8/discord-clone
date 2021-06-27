@@ -1,13 +1,39 @@
-import React from 'react'
-import './Chat.css'
-import ChatHeader from './ChatHeader'
+import React from 'react';
+import './Chat.css';
+import ChatHeader from './ChatHeader';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import CardGiftcardIcon from '@material-ui/icons/CardGiftcard';
+import GiftIcon from '@material-ui/icons/Gif';
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import Message from './Message';
+
 
 const Chat = () => {
-    return (
-        <div className='chat'>
-            <ChatHeader />
-        </div>
-    )
-}
+  return (
+    <div className='chat'>
+      <ChatHeader />
 
-export default Chat
+      <div className='chat_messages'>
+          <Message />
+          <Message />
+          <Message />
+      </div>
+
+      <div className='chat_input'>
+        <AddCircleIcon fontSize='large' />
+        <form>
+          <input placeholder={`Message #TESTCHANNEL`} />
+          <button className='chat_inputButton' type='submit'>Send Message</button>
+        </form>
+
+        <div className='chat_inputIcons'>
+          <CardGiftcardIcon fontSize='large' />
+          <GiftIcon fontSize='large' />
+          <EmojiEmotionsIcon fontSize='large' />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Chat;
