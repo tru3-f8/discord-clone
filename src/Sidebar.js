@@ -49,7 +49,7 @@ const Sidebar = () => {
       </div>
 
       <div className='sidebar_channels'>
-        <div className='sidebar_channelHeader'>
+        <div className='sidebar_channelsHeader'>
           <div className='sidebar_header'>
             <ExpandMoreIcon />
             <h4>Text Channels</h4>
@@ -58,7 +58,7 @@ const Sidebar = () => {
           <AddIcon className='sidebar_addChannel' onClick={handleAddChannel} />
         </div>
 
-        <div className='sidebar_channelList'>
+        <div className='sidebar_channelsList'>
           {channels?.map(({ id, channel }) => ( 
             <SidebarChannel
               key={id}

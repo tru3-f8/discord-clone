@@ -14,3 +14,8 @@
     margin-left: 20px;
     font-size: x-small
 }
+
+.message_info > p {
+    overflow-wrap: break-word;
+    width: 900px;
+}
