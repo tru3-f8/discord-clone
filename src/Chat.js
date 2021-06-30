@@ -19,6 +19,7 @@ const Chat = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
 
+
   useEffect(() => {
     if (channelId) {
       db.collection('channels')
@@ -41,14 +42,16 @@ const Chat = () => {
     });
 
     setInput('');
+
   };
+
 
   return (
     <div className='chat'>
       <ChatHeader channelName={channelName} />
 
       <div className='chat_messages'>
-        {messages.map((message) => ( 
+        {messages.map((message) => (
           <Message
             timestamp={message.timestamp}
             message={message.message}

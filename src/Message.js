@@ -1,23 +1,35 @@
-import React from 'react'
-import { Avatar } from '@material-ui/core'
-import './Message.css'
+import React, { useEffect, useRef } from 'react';
+import { Avatar } from '@material-ui/core';
+import './Message.css';
 
 const Message = ({ message, timestamp, user }) => {
-    
-    
-    return (
-        <div className='message'>
-            <Avatar />
-            <div className="message_info">
-                <h4>
-                 {user}
-                 <span className='message_timestamp'>{new Date(timestamp?.toDate()).toUTCString()}</span>
-                </h4>
+    const messagesEndRef = useRef(null);
 
-                <p>{message}</p>
-            </div>
-        </div>
-    )
-}
+    const scrollToBottom = () => {
+        messagesEndRef.current.scrollIntoView({ block: "end" });
+       
+      };
 
-export default Message
+
+    useEffect(() => {
+        scrollToBottom()
+
+    },[message])
+
+  return (
+    <div className='message'>
+      <Avatar />
+      <div className='message_info'>
+        <h4>
+          {user}
+          <span className='message_timestamp'>
+            {new Date(timestamp?.toDate()).toUTCString()}
+          </span>
+        </h4>
+        <p ref={messagesEndRef}>{message}</p>
+      </div>
+    </div>
+  );
+};
+
+export default Message;

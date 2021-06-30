@@ -1,18 +1,31 @@
-.sidebarChannel:hover {
-    color: white;
-    background-color: #40464b;
+.sidebarChannel {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-top: 20px;
 }
 
-.sidebarChannel > h4 {
+.sidebarChannel:hover {
+  color: white;
+  background-color: #40464b;
+}
+
+/* .sidebarChannel > h4 {
     display: flex;
     padding-left: 15px;
     align-items: center;
     background-color: #2f3135;
     color: gray;
     cursor: pointer;
-}
+} */
 
 .sidebarChannel_hash {
-    font-size: 30px;
-    padding: 8px;
+  font-size: 20px;
+  padding: 8px;
+  justify-content: space-between;
+  color: gray;
+}
+
+.sidebar_removeIcon {
+  color: gray;
 }

@@ -1,10 +1,21 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setChannelInfo } from './features/appSlice';
+import RemoveIcon from '@material-ui/icons/Remove';
 import './SidebarChannel.css';
+import db from './firebase';
 
 const SidebarChannel = ({ id, channelName }) => {
   const dispatch = useDispatch();
+
+  const removeChannel = () => {
+    if (channelName) {
+      db.collection('channels')
+        .delete({
+          channelName: channelName,
+        })
+    }
+  };
 
   return (
     <div
@@ -18,10 +29,8 @@ const SidebarChannel = ({ id, channelName }) => {
         )
       }
     >
-      <h4>
-        <span className='sidebarChannel_hash'>#</span>
-        {channelName}
-      </h4>
+      <span className='sidebarChannel_hash'>{channelName}</span>
+      <RemoveIcon className='sidebar_removeIcon' onClick={removeChannel} />
     </div>
   );
 };
