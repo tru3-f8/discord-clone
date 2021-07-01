@@ -1,20 +1,49 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Avatar } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import './Message.css';
+import db from './firebase';
+import { useSelector } from 'react-redux';
+import { selectChannelId, selectChannelName } from './features/appSlice';
 
 const Message = ({ message, timestamp, user }) => {
-    const messagesEndRef = useRef(null);
+  const channelId = useSelector(selectChannelId);
+  const channelName = useSelector(selectChannelName);
+  const [test, setTest] = useState();
 
-    const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({ block: "end" });
-       
-      };
+  console.log(test)
 
 
-    useEffect(() => {
-        scrollToBottom()
+  const messagesEndRef = useRef(null);
 
-    },[message])
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ block: "end" });
+
+  };
+
+
+  useEffect(() => {
+    scrollToBottom()
+
+  }, [message])
+
+  // useEffect(() => {
+  //     db.collection('channels')
+  //       .doc(channelId)
+  //       .collection('messages')
+  //       .doc(post)
+  //       .onSnapshot((snapshot) =>
+  //        setTest(snapshot.docs?.map((doc) => doc.data()))
+  //       );
+  // }, []);
+
+
+  const deleteMessage = () => {
+ 
+      db.collection('channels').doc(channelId).collection('messages').doc()?.delete()
+   
+  }
+
 
   return (
     <div className='message'>
@@ -26,8 +55,9 @@ const Message = ({ message, timestamp, user }) => {
             {new Date(timestamp?.toDate()).toUTCString()}
           </span>
         </h4>
-        <p ref={messagesEndRef}>{message}</p>
+        <p ref={messagesEndRef} className='message_messageComment'>{message}</p>
       </div>
+      <CloseIcon onClick={deleteMessage} />
     </div>
   );
 };

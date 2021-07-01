@@ -5,13 +5,16 @@
     color: white;
 }
 
+.message:hover {
+    background-color: #738adb;
+}
+
 .message_info {
     margin-left: 20px;
 }
 
 .message_timestamp {
     color: gray;
-    margin-left: 20px;
     font-size: x-small
 }
 

@@ -46,6 +46,7 @@ const Chat = () => {
   };
 
 
+
   return (
     <div className='chat'>
       <ChatHeader channelName={channelName} />

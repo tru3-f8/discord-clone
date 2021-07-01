@@ -21,3 +21,33 @@
     object-fit: contain;
     height: 150px;
 }
+
+.login_userAndEmail {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-top: -300px;
+}
+
+.login_userAndEmail > input {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.login_userAndEmail > p {
+    padding-left: 130px;
+    padding-bottom: 25px;
+}
+
+.login_userAndEmail > button {
+    width: 300px;
+    background-color: #738adb;
+    color: #eff2f5;
+    font-weight: 800;
+}
+
+.login_userAndEmail > button:hover {
+    background-color: black;
+    color: #738adb;
+}
