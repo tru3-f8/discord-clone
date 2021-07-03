@@ -29,6 +29,7 @@ const Sidebar = () => {
     );
   }, []);
 
+  
 
   const handleAddChannel = () => {
     const channelName = prompt('Enter a new channel name');

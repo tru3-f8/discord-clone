@@ -6,12 +6,13 @@ import db from './firebase';
 import { useSelector } from 'react-redux';
 import { selectChannelId, selectChannelName } from './features/appSlice';
 
+
+
 const Message = ({ message, timestamp, user }) => {
   const channelId = useSelector(selectChannelId);
   const channelName = useSelector(selectChannelName);
-  const [test, setTest] = useState();
+  const [messageId, setMessageId] = useState();
 
-  console.log(test)
 
 
   const messagesEndRef = useRef(null);
@@ -27,22 +28,26 @@ const Message = ({ message, timestamp, user }) => {
 
   }, [message])
 
-  // useEffect(() => {
-  //     db.collection('channels')
-  //       .doc(channelId)
-  //       .collection('messages')
-  //       .doc(post)
-  //       .onSnapshot((snapshot) =>
-  //        setTest(snapshot.docs?.map((doc) => doc.data()))
-  //       );
-  // }, []);
+  useEffect(() => {
+      db.collection('channels')
+        .doc(channelId)
+        .collection('messages')
+        .onSnapshot((snapshot) =>
+         setMessageId(snapshot.docs?.map((doc) => doc.id))
+        );
+  }, []);
+
+  // console.log(messageId)
 
 
   const deleteMessage = () => {
  
-      db.collection('channels').doc(channelId).collection('messages').doc()?.delete()
-   
+     console.log(db.collection('channels').doc(channelId).collection('messages').doc())
+
   }
+
+  // console.log(deleteMessage)
+
 
 
   return (
