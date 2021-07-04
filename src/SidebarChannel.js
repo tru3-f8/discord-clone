@@ -9,12 +9,16 @@ const SidebarChannel = ({ id, channelName }) => {
   const dispatch = useDispatch();
   const channelId = useSelector(selectChannelId);
 
+ 
+
   const removeChannel = () => {
-    if(channelId) {
+    if (channelId) {
       db.collection('channels').doc(channelId)
-      .delete()      
+        .delete()
     }
   };
+
+
 
   return (
     <div

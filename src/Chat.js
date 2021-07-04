@@ -32,6 +32,7 @@ const Chat = () => {
     }
   }, [channelId]);
 
+
   const sendMessage = (e) => {
     e.preventDefault();
 
@@ -44,8 +45,6 @@ const Chat = () => {
     setInput('');
 
   };
-
-
 
   return (
     <div className='chat'>

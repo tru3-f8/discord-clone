@@ -1,19 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Avatar } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
 import './Message.css';
 import db from './firebase';
-import { useSelector } from 'react-redux';
-import { selectChannelId, selectChannelName } from './features/appSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectChannelId, selectNewMessageId, setChannelInfo } from './features/appSlice';
+import MessageDelete from './MessageDelete';
 
 
-
-const Message = ({ message, timestamp, user }) => {
+const Message = ({ message, timestamp, user, id }) => {
+  const dispatch = useDispatch;
   const channelId = useSelector(selectChannelId);
-  const channelName = useSelector(selectChannelName);
   const [messageId, setMessageId] = useState();
+  const newMessageId = useSelector(selectNewMessageId);
 
-
+console.log(newMessageId)
 
   const messagesEndRef = useRef(null);
 
@@ -28,30 +28,38 @@ const Message = ({ message, timestamp, user }) => {
 
   }, [message])
 
-  useEffect(() => {
-      db.collection('channels')
-        .doc(channelId)
-        .collection('messages')
-        .onSnapshot((snapshot) =>
-         setMessageId(snapshot.docs?.map((doc) => doc.id))
-        );
-  }, []);
-
-  // console.log(messageId)
+  // useEffect(() => {
+  //   db.collection('channels')
+  //     .doc(channelId)
+  //     .collection('messages')
+  //     .onSnapshot((snapshot) =>
+  //       setMessageId(snapshot.docs?.map((doc) => ({ id: doc.id })))
+  //     );
+  // }, [channelId]);
 
 
-  const deleteMessage = () => {
- 
-     console.log(db.collection('channels').doc(channelId).collection('messages').doc())
-
+  const individualMessageId = () => {
+    db.collection('channels')
+      .doc(channelId)
+      .collection('messages')
+      .onSnapshot((snapshot) =>
+        setMessageId(snapshot.docs?.map((doc) => ({ id: doc.id })))
+      );
   }
 
-  // console.log(deleteMessage)
+  const dispatchTest = () => {
+    dispatch(
+      setChannelInfo({
+        newMessageId: 'test',
+      })
+    )
+  }
 
+  dispatchTest()
 
 
   return (
-    <div className='message'>
+    <div className='message' onClick={individualMessageId}>
       <Avatar />
       <div className='message_info'>
         <h4>
@@ -62,7 +70,11 @@ const Message = ({ message, timestamp, user }) => {
         </h4>
         <p ref={messagesEndRef} className='message_messageComment'>{message}</p>
       </div>
-      <CloseIcon onClick={deleteMessage} />
+      {/* {messageId?.map(({ id }) => (
+          <MessageDelete
+            id={id}
+          />
+        ))} */}
     </div>
   );
 };
