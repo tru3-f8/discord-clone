@@ -43,6 +43,7 @@ const Message = ({ message, timestamp, user, id }) => {
     db.collection('channels')
       .doc(channelId)
       .collection('messages')
+      .orderBy('timestamp', 'asc')
       .onSnapshot((snapshot) =>
         setMessageId(snapshot.docs?.map((doc) => ({ id: doc.id })))
       )
@@ -56,11 +57,13 @@ const Message = ({ message, timestamp, user, id }) => {
 
 
   const deleteMessage = () => {
-    db.collection('channels')
-      .doc(channelId)
-      .collection('messages')
-      .doc(newMessageId)
-      .delete();
+    if (messageId) {
+      db.collection('channels')
+        .doc(channelId)
+        .collection('messages')
+        .doc(newMessageId)
+        .delete();
+    }
   };
 
   console.log(messageId)
@@ -68,7 +71,7 @@ const Message = ({ message, timestamp, user, id }) => {
 
 
   return (
-    <div className='message' key={newMessageId} onClick={individualMessageId}>
+    <div className='message' onClick={individualMessageId}>
       <Avatar />
       <div className='message_info'>
         <h4>
