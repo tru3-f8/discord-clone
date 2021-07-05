@@ -9,6 +9,7 @@ const SidebarChannel = ({ id, channelName }) => {
   const dispatch = useDispatch();
   const channelId = useSelector(selectChannelId);
 
+
  
 
   const removeChannel = () => {

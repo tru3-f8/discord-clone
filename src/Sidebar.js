@@ -21,7 +21,7 @@ const Sidebar = () => {
   useEffect(() => {
     db.collection('channels').onSnapshot((snapshot) =>
       setChannels(
-        snapshot.docs.map((doc) => ({
+        snapshot.docs.map((doc) => ({ 
           id: doc.id,
           channel: doc.data(),
         }))
@@ -29,8 +29,7 @@ const Sidebar = () => {
     );
   }, []);
 
-
-  
+  console.log(channels)
 
   const handleAddChannel = () => {
     const channelName = prompt('Enter a new channel name');
@@ -46,7 +45,7 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='sidebar_top'>
-        <h3>Clever Programmer</h3>
+        <h3>Discord</h3>
         <ExpandMoreIcon />
       </div>
 
