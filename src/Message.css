@@ -22,3 +22,10 @@
     overflow-wrap: break-word;
     width: 900px;
 }
+
+.message_deleteMessage {
+    transform: translate(-50000);
+    color: blue;
+}
+
+

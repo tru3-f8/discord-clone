@@ -14,9 +14,9 @@ const Message = ({ message, timestamp, user, id }) => {
   const channelId = useSelector(selectChannelId);
   const [messageId, setMessageId] = useState();
   const [newMessageId, setNewMessageId] = useState();
-
-
   const messagesEndRef = useRef(null);
+
+
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ block: "end" });
@@ -39,6 +39,18 @@ const Message = ({ message, timestamp, user, id }) => {
   // }, [channelId]);
 
 
+  // const individualMessageId = () => {
+  //   db.collection('channels')
+  //     .doc(channelId)
+  //     .collection('messages')
+  //     .orderBy('timestamp', 'asc')
+  //     .onSnapshot((snapshot) =>
+  //       setMessageId(snapshot.docs?.map((doc) => ({ id: doc.id })))
+  //     )
+  //   messageId?.map(({ id }) => setNewMessageId(id))
+  // }
+
+
   const individualMessageId = () => {
     db.collection('channels')
       .doc(channelId)
@@ -49,25 +61,17 @@ const Message = ({ message, timestamp, user, id }) => {
       )
     messageId?.map(({ id }) => setNewMessageId(id))
   }
-
-  // useEffect(() => {
-  //   messageId?.map(({ id }) => setNewMessageId(id))
-  // }, [messageId])
-
-
+  
 
   const deleteMessage = () => {
     if (messageId) {
       db.collection('channels')
         .doc(channelId)
         .collection('messages')
-        .doc(newMessageId)
+        .doc(id)
         .delete();
     }
   };
-
-  console.log(messageId)
-  console.log(newMessageId)
 
 
   return (
@@ -82,7 +86,7 @@ const Message = ({ message, timestamp, user, id }) => {
         </h4>
         <p ref={messagesEndRef} className='message_messageComment'>{message}</p>
       </div>
-      <CloseIcon onClick={deleteMessage} />
+      <CloseIcon className='message_deleteMessage' onClick={deleteMessage} />
     </div>
   );
 };

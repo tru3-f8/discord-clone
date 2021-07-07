@@ -8,7 +8,7 @@ import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import Message from './Message';
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/userSlice';
-import { selectChannelId, selectChannelName } from './features/appSlice';
+import { selectChannelId, selectChannelName, selectNewMessageId } from './features/appSlice';
 import db from './firebase';
 import firebase from 'firebase';
 
@@ -19,6 +19,8 @@ const Chat = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
 
+ 
+console.log(messages)
 
   useEffect(() => {
     if (channelId) {
@@ -27,10 +29,11 @@ const Chat = () => {
         .collection('messages')
         .orderBy('timestamp', 'asc')
         .onSnapshot((snapshot) =>
-          setMessages(snapshot.docs?.map((doc) => doc.data()))
+          setMessages(snapshot.docs?.map((doc) => ({ data: doc.data(), id: doc.id })))
         );
     }
   }, [channelId]);
+
 
 
   const sendMessage = (e) => {
@@ -51,11 +54,12 @@ const Chat = () => {
       <ChatHeader channelName={channelName} />
 
       <div className='chat_messages'>
-        {messages.map((message) => (
+        {messages.map(({ data, id }) => (
           <Message
-            timestamp={message.timestamp}
-            message={message.message}
-            user={message.user}
+            timestamp={data.timestamp}
+            message={data.message}
+            user={data.user}
+            id={id}
           />
         ))}
       </div>
