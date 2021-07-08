@@ -20,12 +20,8 @@
 
 .message_info > p {
     overflow-wrap: break-word;
-    width: 900px;
+    width: 65vw;
 }
 
-.message_deleteMessage {
-    transform: translate(-50000);
-    color: blue;
-}
 
 

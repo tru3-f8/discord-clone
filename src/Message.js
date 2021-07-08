@@ -64,13 +64,11 @@ const Message = ({ message, timestamp, user, id }) => {
   
 
   const deleteMessage = () => {
-    if (messageId) {
       db.collection('channels')
         .doc(channelId)
         .collection('messages')
         .doc(id)
         .delete();
-    }
   };
 
 

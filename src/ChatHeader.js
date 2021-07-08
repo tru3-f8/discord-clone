@@ -6,6 +6,7 @@ import PeopleAltRoundedIcon from '@material-ui/icons/PeopleAltRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
+import CloseIcon from '@material-ui/icons/Close';
 
 const ChatHeader = ({ channelName }) => {
     return (
@@ -29,6 +30,7 @@ const ChatHeader = ({ channelName }) => {
 
                 <SendRoundedIcon />
                 <HelpRoundedIcon />
+                <CloseIcon />
             </div>
         </div>
     )
