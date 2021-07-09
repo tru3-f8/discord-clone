@@ -7,8 +7,21 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
 import CloseIcon from '@material-ui/icons/Close';
+import { useDispatch } from 'react-redux';
+import { setDeleteMessageOption } from './features/deleteMessageSlice';
 
 const ChatHeader = ({ channelName }) => {
+    const dispatch = useDispatch();
+
+    const deleteMessageOption = () => {
+        dispatch(
+            setDeleteMessageOption({
+                deleteMessageOption: true,  
+            })
+        )
+    }
+
+
     return (
         <div className='chatHeader'>
             <div className="chatHeader_left">
@@ -30,7 +43,7 @@ const ChatHeader = ({ channelName }) => {
 
                 <SendRoundedIcon />
                 <HelpRoundedIcon />
-                <CloseIcon />
+                <CloseIcon onClick={deleteMessageOption} />
             </div>
         </div>
     )

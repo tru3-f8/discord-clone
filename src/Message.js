@@ -5,6 +5,7 @@ import db from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectChannelId, selectNewMessageId, setChannelInfo } from './features/appSlice';
 import CloseIcon from '@material-ui/icons/Close';
+import { selectDeleteMessageOption } from './features/deleteMessageSlice';
 
 
 
@@ -13,9 +14,9 @@ const Message = ({ message, timestamp, user, id }) => {
   const dispatch = useDispatch();
   const channelId = useSelector(selectChannelId);
   const [messageId, setMessageId] = useState();
-  const [newMessageId, setNewMessageId] = useState();
+  // const [newMessageId, setNewMessageId] = useState();
   const messagesEndRef = useRef(null);
-
+  const deleteMessageOption = useSelector(selectDeleteMessageOption);
 
 
   const scrollToBottom = () => {
@@ -59,7 +60,7 @@ const Message = ({ message, timestamp, user, id }) => {
       .onSnapshot((snapshot) =>
         setMessageId(snapshot.docs?.map((doc) => ({ id: doc.id })))
       )
-    messageId?.map(({ id }) => setNewMessageId(id))
+    // messageId?.map(({ id }) => setNewMessageId(id))
   }
   
 
@@ -70,6 +71,8 @@ const Message = ({ message, timestamp, user, id }) => {
         .doc(id)
         .delete();
   };
+
+  const dMessage = deleteMessageOption ? 1 : 0;
 
 
   return (
@@ -84,7 +87,7 @@ const Message = ({ message, timestamp, user, id }) => {
         </h4>
         <p ref={messagesEndRef} className='message_messageComment'>{message}</p>
       </div>
-      <CloseIcon className='message_deleteMessage' onClick={deleteMessage} />
+      <CloseIcon className='message_deleteMessage' style={{ opacity: `${dMessage}` }} onClick={deleteMessage} />
     </div>
   );
 };
