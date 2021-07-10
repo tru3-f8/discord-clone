@@ -80,7 +80,7 @@ const Message = ({ message, timestamp, user, id }) => {
       <Avatar />
       <div className='message_info'>
         <h4>
-          {user}
+          {user ? <> {user} </> : ('Test User')} 
           <span className='message_timestamp'>
             {new Date(timestamp?.toDate()).toUTCString()}
           </span>
