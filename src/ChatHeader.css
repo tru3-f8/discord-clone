@@ -1,51 +1,79 @@
 .chatHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: gray;
-    padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: gray;
+  padding: 10px;
 }
 
 .chatHeader {
-    color: gray;
-    font-size: 30px;
-    padding: 10px;
+  color: gray;
+  font-size: 30px;
+  padding: 10px;
 }
 
 .chatHeader_left > h3 {
-    display: flex;
-    align-items: center;
-    color: white;
+  display: flex;
+  align-items: center;
+  color: white;
 }
 
 .chatHeader_right {
-    display: flex;
-    align-items: center;
-    flex: 0.5;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  flex: 0.5;
+  justify-content: center;
 }
 
 .chatHeader_right > .MuiSvgIcon-root {
-    padding: 5px;
-    cursor: pointer;
+  padding: 5px;
+  cursor: pointer;
 }
 
 .chatHeader_right > .MuiSvgIcon-root:hover {
-   color: white;
+  color: white;
 }
 
 .chatHeader_search {
-    display: flex;
-    align-items: center;
-    color: gray;
-    background-color: #2f3135;
-    border-radius: 3px;
-    padding: 3px;
+  display: flex;
+  align-items: center;
+  color: gray;
+  background-color: #2f3135;
+  border-radius: 3px;
+  padding: 3px;
 }
 
 .chatHeader_search > input {
-    background-color: transparent;
-    outline-width: 0;
-    color: white;
-    border: none;
+  background-color: transparent;
+  outline-width: 0;
+  color: white;
+  border: none;
+}
+
+.chatHeader_tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.chatHeader_tooltipDeleteIcon {
+  cursor: pointer;
+}
+
+.chatHeader_tooltip .chatHeader_tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: gray;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  font-size: 12px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+.chatHeader_tooltip:hover .chatHeader_tooltiptext {
+  visibility: visible;
 }
