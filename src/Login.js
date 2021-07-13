@@ -19,9 +19,9 @@ const Login = () => {
       let user = userCredential.user
       console.log(user)
     })
-    .catch((error) => {
-      console.log(error.message)
-    })
+      .catch((error) => {
+        console.log(error.message)
+      })
   }
 
   return (
@@ -33,13 +33,17 @@ const Login = () => {
         />
       </div>
 
-      <Button onClick={signIn}>Login with Google</Button>
-
       <div className='login_userAndEmail'>
+        <Button onClick={signIn}>Login with Google</Button>
         <p>OR</p>
         <input value={email} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='Email' />
         <input value={password} onChange={(e) => setPassword(e.target.value)} type='password' placeholder='Password' />
         <Button onClick={localSignIn}>Login</Button>
+        <div className='login_description'>
+          <h6>If you don't feel comfortable using your Google account to login, you can use the local account below.</h6>
+          <div>Username: test@gmail.com</div>
+          <div>Password: welcome1</div>
+        </div>
       </div>
     </div>
   );

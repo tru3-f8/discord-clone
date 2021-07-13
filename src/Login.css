@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+.login_logo {
+    padding-bottom: 50px;
+}
+
 .login > button {
     width: 300px;
     background-color: #738adb;
@@ -26,7 +30,7 @@
     display: flex;
     flex-direction: column;
     width: 300px;
-    margin-top: -300px;
+    height: 500px;
 }
 
 .login_userAndEmail > input {
@@ -38,6 +42,7 @@
 .login_userAndEmail > p {
     padding-left: 130px;
     padding-bottom: 25px;
+    padding-top: 35px;
 }
 
 .login_userAndEmail > button {
@@ -51,3 +56,13 @@
     background-color: black;
     color: #738adb;
 }
+
+.login_description {
+    padding-top: 10px;
+}
+
+.login_description > div {
+    padding-top: 10px;
+    font-size: 15px;
+}
+
