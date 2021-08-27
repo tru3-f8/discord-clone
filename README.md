@@ -5,7 +5,7 @@ The Discord clone is built with React.js, CSS, Material UI, and Firebase for hos
 - Username: test@gmail.com
 - Password: welcome1
 
-## Dependencies
+## Technologies
 - react-router-dom
 - react useState and useEffect
 - react-hook-form
